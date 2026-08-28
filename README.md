@@ -36,7 +36,7 @@ The portfolio is organized as a progressive sequence of exercises and projects, 
 
 The following tools support the development, analysis and documentation of the projects in this portfolio:
 
-- **Programming and Data Analysis:** Python, NumPy, pandas
+- **Programming and Data Analysis:** Python, NumPy, pandas, SQL, DuckDB
 - **Machine Learning:** scikit-learn, TensorFlow
 - **Data Visualization:** Matplotlib
 - **Development and Workflow:** Git, GitHub, Visual Studio Code, Jupyter Notebook
@@ -52,7 +52,8 @@ portfolio-quant-ds/
 ├── .gitignore
 ├── data/                          # Shared datasets
 ├── docs/                          # Supporting documentation
-├── week01-fundamentals/           # Foundational exercises
+├── week01-fundamentals/           # Foundational Python, NumPy & Pandas
+├── week02-sql-analysis/           # Foundational SQL & DuckDB Market Data Engine
 ├── project01-stock-screener/      # Applied project 1
 ├── project02-credit-risk/         # Applied project 2
 └── project03-volatility-forecast/ # Applied project 3
@@ -64,7 +65,7 @@ The portfolio is currently in its foundational development phase.
 
 - [x] Repository setup and Git workflow
 - [x] Main portfolio documentation
-- [ ] Data analysis fundamentals
+- [x] Data analysis fundamentals
 - [ ] Applied Project 1
 - [ ] Applied Project 2
 - [ ] Applied Project 3
