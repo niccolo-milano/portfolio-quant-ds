@@ -1,6 +1,6 @@
 # Project 01: Rule-Based Stock Screener
 
-**Status:** Work in Progress — Phase 3 of 3 in progress (filtering logic completed, rolling evaluation in progress)
+**Status:** Completed
 
 > **Scope note:** this is a rule-based screening tool, not a backtested
 > trading strategy. No P&L, position sizing, or transaction costs are
@@ -19,6 +19,9 @@ filtering of an equity universe.
 * **Statistics:** vectorized statistical moments (Fisher kurtosis),
   annualized volatility (√252 scaling), max drawdown
 * **Visualization:** Plotly (interactive), Seaborn / Matplotlib
+* **Architecture:** Polyglot ELT pipeline — DuckDB for vectorized SQL 
+  window functions (window functions, cross-sectional quantiles); Pandas 
+  for downstream list-based aggregation.
 
 ## Roadmap
 
@@ -35,9 +38,9 @@ filtering of an equity universe.
 * Pearson correlation matrix across assets
 * Max drawdown per asset
 
-### Phase 3: Rule-based screening — 🔄 In Progress
+### Phase 3: Rule-based screening — ✅ Completed
 * Cross-sectional filtering logic — ✅ Completed
-* Rolling screening evaluation (monthly turnover/stability) — 🔜 In progress
+* Rolling screening evaluation (monthly turnover/stability) — ✅ Completed
 
 **Universe expansion.** The investable universe comprises 15 individual
 equities across 5 GICS sectors (Technology, Financials, Healthcare, Energy,
@@ -91,8 +94,18 @@ flagged as investable on a given day:
 * Cross-sectional screening yields ~29% investable signals (3,015 out of
   10,400 observations), indicating the filter is selective without being
   overly restrictive
-* Turnover and signal stability across monthly rebalancing dates — to be
-  added after Phase 3b (rolling evaluation)
+* Monthly portfolio size (EoM snapshots) ranges from 3 to 8 assets across
+  the evaluation period (Nov 2022 – Dec 2024), with troughs of 3 assets
+  in February 2023, May 2023, October 2023, and December 2024
+* NVDA and MSTR (the two highest-volatility constituents) fail the
+  relative volatility filter in every observed month, while defensive
+  names (PG, KO, JNJ, PEP) and SPY pass most consistently. This is a
+  direct consequence of the cross-sectional median volatility design
+  (see "Universe expansion"): high-beta growth/crypto-proxy assets are
+  structurally excluded regardless of momentum or drawdown conditions
+* Portfolio troughs loosely coincide with known periods of market stress
+  (e.g. Oct 2023 Treasury yield spike), though a monthly-resolution
+  screen cannot establish causality or intra-month dynamics
 
 ## Dataset
 * **Phase 1–2 (EDA):** AAPL, MSFT, SPY — daily OHLCV via yfinance,
